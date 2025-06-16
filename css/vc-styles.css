@@ -1,0 +1,313 @@
+/* VOICE COMMANDER */
+
+/* Common */
+
+.vc-command-list code {
+    padding: 2px 4px;
+    background-color: #424242;
+    color: inherit;
+    border-radius: 3px;
+    font-size: .8125rem;
+}
+
+.fadeOut {
+    opacity: 0;
+    transition: opacity 1s ease;
+}
+
+/* Admin */
+
+.vc-blockquote ul {
+    padding: .5rem 1.5rem;
+    margin: 0;
+}
+
+.q2avctitle {
+    margin-bottom: 0 !important;
+}
+
+/* Plugin */
+#vcstatus-wrapper {
+    position: relative;
+    font-family: sans-serif;
+    font-size: 20px;
+    display: inline-block;
+}
+.vcBox {
+    position: fixed;
+    left: 50%;
+    bottom: 0;
+    z-index: 9999999;
+    transform: translateX(-50%) translateY( calc(100% + 2rem) );
+    transition: transform ease .25s;
+    display: flex;
+    max-width: 500px;
+    font-size: 16px;
+    /* text-align: center; */
+    /* background-color: #323232; */
+    color: #ffffff;
+    border-radius: 75px;
+    overflow: hidden;
+    box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.26);
+    padding: 12px 24px;
+}
+.vcBox ~ .vcBox {
+    z-index: 9998;
+}
+
+.preload .vcBox {
+    transition: none;
+}
+
+.vcBox.active {
+    transform: translateX(-50%) translateY( calc(0% - 2rem) );
+}
+
+/*
+#vcstatus:before {
+    display: block;
+    position: absolute;
+    right: -15px;
+    bottom: 6px;
+    left: auto;
+    border-width: 10px 15px 10px 0px;
+    border-color: transparent #f3961c;
+    border-style: solid;
+    content: &quot;&quot;;
+    width: 0;
+}
+*/
+
+.vc-command-list {
+    padding-top: 0;
+    border-radius: 18px;
+    display: block;
+    overflow-y: auto;
+    width: 95%;
+    max-height: calc(100vh - 120px);
+    background-color: #424242;
+}
+
+.vc-command-list > h2:first-child,
+.vc-command-list > h3:first-child {
+    position: sticky;
+    top: 0;
+    z-index: 1;
+    width: 101%;
+    display: flex;
+    align-items: center;
+    flex-wrap: nowrap;
+    background-color: #424242;
+    border-bottom: 1px solid #292b2f;
+    margin: 0;
+    padding: 1rem 0rem;
+}
+
+.vc-close-command-list {
+    display: inline-flex;
+    flex-grow: 1;
+    justify-content: flex-end;
+    padding: 0rem 1rem;
+    cursor: pointer;
+}
+
+.vc-command-list blockquote {
+    background-color: rgb(255 224 178 / 20%);
+    color: #dcddde;
+    font-size: .75rem;
+}
+
+
+#vcstatus-icon, #vcstatus-message {
+    display: flex;
+    justify-content: flex-start;
+    align-self: center;
+    flex-wrap: nowrap;
+}
+
+#vcstatus-icon {
+    flex-shrink: 0;
+    margin-inline-end: 1rem;
+}
+#vcstatus-icon .drmpc-wrapper {
+    margin: 0;
+    padding: 0;
+}
+#vcstatus-icon img {
+    width: 100%;
+    height: auto;
+}
+
+#vcstatus-message img {
+    max-width: 300px;
+}
+
+.vcstatus-bg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: -1;
+    background-color: #f83052;
+    opacity: .95;
+}
+[data-theme="dark"] .vcstatus-bg {
+    opacity: .75;
+}
+
+
+.drmpc-wrapper {
+    display: inline-block;
+    vertical-align: middle;
+    margin: 0 auto;
+    border-radius: 50%;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.26);
+    transition: box-shadow .2s ease-in-out;
+    margin: 0 8px;
+}
+.drmpc-wrapper:hover {
+    /* box-shadow: 0 8px 10px 1px rgba(0,0,0,0.14), 0 3px 14px 2px rgba(0,0,0,0.12), 0 5px 5px -3px rgba(0,0,0,0.2); */
+    box-shadow: 0 4px 8px 0px rgba(0,0,0,0.14), 0 3px 12px 1px rgba(0,0,0,0.12), 0 3px 3px -3px rgba(0,0,0,0.2);
+}
+
+.drmpc {
+    width: 38px;
+    height: 38px;
+}
+.vcicon {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    white-space: nowrap;
+    cursor: pointer;
+    border-radius: 50%;
+    width: inherit;
+    height: inherit;
+    text-align: center;
+    padding: 12px 0;
+}
+.drmpc-officon {
+    padding: 6px 0;
+}
+
+.vc-temp-animation .drmpc-officon {
+    animation: showvcicon 1s ease-in-out forwards;
+}
+
+.active-pulse .drmpc-officon {
+    display: none;
+}
+.drmpc-wrapper .drmpc-onicon {
+    display: none;
+}
+.active-pulse .drmpc-onicon {
+    display: inline-flex;
+}
+
+
+.drmpc-bar {
+    display: inline-block;
+    height: 100%;
+    width: 3px;
+    border-radius: 4px;
+    margin: 0 1px;
+    -webkit-animation: none;
+    animation: none;
+    background-color: #E0E0E0;
+    transition: transform .2s ease-in-out;
+}
+.dri {
+    animation: vcspeaking 1s ease-in-out infinite;
+}
+.dri:nth-child(1) {
+    animation-delay: 0;
+}
+.dri:nth-child(2) {
+    animation-delay: 0.09s;
+}
+.dri:nth-child(3) {
+    animation-delay: .18s;
+}
+.dri:nth-child(4) {
+    animation-delay: .27s;
+}
+
+#vcstatus .vcicon {
+    fill: rgb(255 255 255 / 60%);
+}
+#vcstatus .drmpc-bar {
+    background-color: rgb(255 255 255 / 80%);
+}
+
+.active-pulse .dri {
+    /* background-color: #FFFFFF; */
+    background-color: #000000;
+}
+.active-pulse .vcicon {
+    -webkit-animation: vcactivePulse 2s infinite cubic-bezier(0.66, 0, 0, 1);
+    -moz-animation: vcactivePulse 2s infinite cubic-bezier(0.66, 0, 0, 1);
+    -ms-animation: vcactivePulse 2s infinite cubic-bezier(0.66, 0, 0, 1);
+    animation: vcactivePulse 2s infinite cubic-bezier(0.66, 0, 0, 1);
+    /* background-color: #4e92df; */
+}
+
+
+
+@-webkit-keyframes showvcicon {
+    0% {opacity: 0;}
+    100% {opacity: 1;}
+}
+
+@keyframes vcspeaking {
+    0% {
+        transform: scale(1);
+        border-radius: 2px;
+    }
+    20% {
+        transform: scale(1, 1.8);
+        border-radius: 2px;
+    }
+    40% {
+        transform: scale(1);
+        border-radius: 2px;
+    }
+}
+
+@-webkit-keyframes vcactivePulse {
+    0% {box-shadow: 0 0 0 -20px rgba(78, 146, 223, 0.65);}
+    100% {box-shadow: 0 0 0 15px rgba(101, 199, 163, 0);}
+}
+@-moz-keyframes vcactivePulse {
+    0% {box-shadow: 0 0 0 -20px rgba(78, 146, 223, 0.65);}
+    100% {box-shadow: 0 0 0 15px rgba(101, 199, 163, 0);}
+}
+@-ms-keyframes vcactivePulse {
+    0% {box-shadow: 0 0 0 -20px rgba(78, 146, 223, 0.65);}
+    100% {box-shadow: 0 0 0 15px rgba(101, 199, 163, 0);}
+}
+@keyframes vcactivePulse {
+    0% {box-shadow: 0 0 0 -20px rgba(78, 146, 223, 0.65);}
+    100% {box-shadow: 0 0 0 15px rgba(101, 199, 163, 0);}
+}
+
+
+.qa-a-list-item {
+    position: relative;
+}
+.vc-whichone {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: nowrap;
+    font-size: 2rem;
+    background-color: rgb(0 0 0 / 75%);
+    color: #fff;
+}
